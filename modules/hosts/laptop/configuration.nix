@@ -60,6 +60,7 @@
         firefox
         steam
         vlc
+        gnomeExtensions.caffeine
       ];
     };
 
