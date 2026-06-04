@@ -63,7 +63,6 @@
         steam
         vlc
         gnomeExtensions.caffeine
-        gnome-extensions-app
         gnome-tweaks
         obsidian
       ];
