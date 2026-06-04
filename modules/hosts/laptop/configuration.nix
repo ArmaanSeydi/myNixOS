@@ -49,13 +49,15 @@
     virtualisation.libvirtd.enable = true;
     programs.virt-manager.enable = true;
 
+    virtualisation.docker.enable = true;
+
     programs.zsh.enable = true;
 
     users.users.armaan = {
       isNormalUser = true;
       description = "Armaan Seydi";
       shell = pkgs.zsh;
-      extraGroups = [ "networkmanager" "wheel" "libvirtd"];
+      extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" ];
       packages = with pkgs; [
         firefox
         steam
