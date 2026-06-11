@@ -64,11 +64,6 @@
           disable_hyprland_logo   = true;
         };
 
-        exec-once = [
-          "waybar"
-          "hyprpaper"
-          "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
-        ];
 
         bind =
           [
@@ -123,6 +118,14 @@
           ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
         ];
       };
+
+      extraConfig = ''
+        hl.on("hyprland.start", function()
+          hl.exec_cmd("waybar")
+          hl.exec_cmd("hyprpaper")
+          hl.exec_cmd("${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1")
+        end)
+      '';
     };
 
     # Wallpaper
