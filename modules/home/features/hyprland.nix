@@ -8,10 +8,6 @@
       settings = {
         monitor = ",preferred,auto,1";
 
-        "$mod"      = "SUPER";
-        "$terminal" = "kitty";
-        "$menu"     = "wofi --show drun";
-
         env = [
           "XCURSOR_THEME,Bibata-Modern-Ice"
           "XCURSOR_SIZE,16"
@@ -70,52 +66,50 @@
 
         exec-once = [
           "waybar"
-          "mako"
           "hyprpaper"
-          "hypridle"
           "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
         ];
 
         bind =
           [
-            "$mod,       Return, exec,          $terminal"
-            "$mod,       Q,      killactive"
-            "$mod,       M,      exit"
-            "$mod,       V,      togglefloating"
-            "$mod,       F,      fullscreen"
-            "$mod,       R,      exec,          $menu"
-            "$mod,       P,      pseudo"
+            "SUPER,       Return, exec,          kitty"
+            "SUPER,       Q,      killactive"
+            "SUPER,       M,      exit"
+            "SUPER,       V,      togglefloating"
+            "SUPER,       F,      fullscreen"
+            "SUPER,       R,      exec,          wofi --show drun"
+            "SUPER,       P,      pseudo"
 
             # Focus (vim-style)
-            "$mod,       H, movefocus, l"
-            "$mod,       L, movefocus, r"
-            "$mod,       K, movefocus, u"
-            "$mod,       J, movefocus, d"
+            "SUPER,       H, movefocus, l"
+            "SUPER,       L, movefocus, r"
+            "SUPER,       K, movefocus, u"
+            "SUPER,       J, movefocus, d"
 
             # Move windows
-            "$mod SHIFT, H, movewindow, l"
-            "$mod SHIFT, L, movewindow, r"
-            "$mod SHIFT, K, movewindow, u"
-            "$mod SHIFT, J, movewindow, d"
+            "SUPER SHIFT, H, movewindow, l"
+            "SUPER SHIFT, L, movewindow, r"
+            "SUPER SHIFT, K, movewindow, u"
+            "SUPER SHIFT, J, movewindow, d"
 
             # Screenshot: region → clipboard
-            "$mod SHIFT, S, exec, grim -g \"$(slurp)\" - | wl-copy"
-            ",           Print, exec, grim - | wl-copy"
+            "SUPER SHIFT, S, exec, grim -g \"$(slurp)\" - | wl-copy"
+            ",            Print, exec, grim - | wl-copy"
 
             # Clipboard history
-            "$mod SHIFT, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
+            "SUPER SHIFT, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
 
             # Lock screen
-            "$mod,       Delete, exec, hyprlock"
+            "SUPER,       Delete, exec, hyprlock"
           ]
-          ++ (map (n: "$mod,       ${toString n}, workspace,       ${toString n}") (lib.range 1 9))
-          ++ [ "$mod,       0, workspace,       10" ]
-          ++ (map (n: "$mod SHIFT, ${toString n}, movetoworkspace, ${toString n}") (lib.range 1 9))
-          ++ [ "$mod SHIFT, 0, movetoworkspace, 10" ];
+          ++ (map (n: "SUPER,       ${toString n}, workspace,       ${toString n}") (lib.range 1 9))
+          ++ [ "SUPER,       0, workspace,       10" ]
+          ++ (map (n: "SUPER SHIFT, ${toString n}, movetoworkspace, ${toString n}") (lib.range 1 9))
+          ++ [ "SUPER SHIFT, 0, movetoworkspace, 10" ];
 
         bindm = [
-          "$mod, mouse:272, movewindow"
-          "$mod, mouse:273, resizewindow"
+          "SUPER, mouse:272, movewindow"
+          "SUPER, mouse:273, resizewindow"
         ];
 
         bindel = [
