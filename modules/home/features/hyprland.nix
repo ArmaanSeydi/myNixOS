@@ -72,6 +72,8 @@
           "waybar"
           "mako"
           "hyprpaper"
+          "hypridle"
+          "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
         ];
 
         bind =
@@ -99,6 +101,12 @@
             # Screenshot: region → clipboard
             "$mod SHIFT, S, exec, grim -g \"$(slurp)\" - | wl-copy"
             ",           Print, exec, grim - | wl-copy"
+
+            # Clipboard history
+            "$mod SHIFT, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
+
+            # Lock screen
+            "$mod,       Delete, exec, hyprlock"
           ]
           ++ (map (n: "$mod,       ${toString n}, workspace,       ${toString n}") (lib.range 1 9))
           ++ [ "$mod,       0, workspace,       10" ]
@@ -198,5 +206,72 @@
       grim
       slurp
     ];
+
+    # Idle management: dim → lock → display off
+    services.hypridle = {
+      enable = true;
+      settings = {
+        general = {
+          lock_cmd         = "hyprlock";
+          before_sleep_cmd = "hyprlock";
+          after_sleep_cmd  = "hyprctl dispatch dpms on";
+        };
+        listener = [
+          {
+            timeout    = 300;
+            on-timeout = "brightnessctl set 20%";
+            on-resume  = "brightnessctl set 100%";
+          }
+          {
+            timeout    = 600;
+            on-timeout = "hyprlock";
+          }
+          {
+            timeout    = 660;
+            on-timeout = "hyprctl dispatch dpms off";
+            on-resume  = "hyprctl dispatch dpms on";
+          }
+        ];
+      };
+    };
+
+    # Lock screen — Stylix handles background and input-field colors
+    programs.hyprlock = {
+      enable = true;
+      settings = {
+        general = {
+          disable_loading_bar = true;
+          hide_cursor         = true;
+        };
+        label = [
+          {
+            monitor     = "";
+            text        = ''cmd[update:1000] echo "$(date +"%H:%M")"'';
+            color       = "rgba(229, 233, 240, 1.0)";
+            font_size   = 64;
+            font_family = "JetBrainsMono Nerd Font";
+            position    = "0, 160";
+            halign      = "center";
+            valign      = "center";
+          }
+          {
+            monitor     = "";
+            text        = ''cmd[update:60000] echo "$(date +"%A, %B %d")"'';
+            color       = "rgba(216, 222, 233, 1.0)";
+            font_size   = 18;
+            font_family = "JetBrainsMono Nerd Font";
+            position    = "0, 80";
+            halign      = "center";
+            valign      = "center";
+          }
+        ];
+      };
+    };
+
+    # Network tray applet
+    services.network-manager-applet.enable = true;
+
+    # Clipboard history (Super+Shift+V to paste from history)
+    services.cliphist.enable = true;
   };
 }
