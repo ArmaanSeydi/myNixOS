@@ -1,0 +1,202 @@
+{ ... }: {
+  flake.homeModules.hyprland = { pkgs, lib, ... }: {
+
+    wayland.windowManager.hyprland = {
+      enable = true;
+      xwayland.enable = true;
+
+      settings = {
+        monitor = ",preferred,auto,1";
+
+        "$mod"      = "SUPER";
+        "$terminal" = "kitty";
+        "$menu"     = "wofi --show drun";
+
+        env = [
+          "XCURSOR_THEME,Bibata-Modern-Ice"
+          "XCURSOR_SIZE,16"
+        ];
+
+        general = {
+          gaps_in   = 4;
+          gaps_out  = 8;
+          border_size = 2;
+          "col.active_border"   = "rgba(88C0D0ff) rgba(81A1C1ff) 45deg";
+          "col.inactive_border" = "rgba(4C566Aff)";
+          layout = "dwindle";
+        };
+
+        decoration = {
+          rounding = 8;
+          blur = {
+            enabled = true;
+            size    = 5;
+            passes  = 2;
+          };
+          shadow.enabled = false;
+        };
+
+        animations = {
+          enabled = true;
+          bezier = "smooth, 0.05, 0.9, 0.1, 1.05";
+          animation = [
+            "windows,    1, 5, smooth"
+            "windowsOut, 1, 5, default, popin 80%"
+            "border,     1, 10, default"
+            "fade,       1, 5, default"
+            "workspaces, 1, 5, default"
+          ];
+        };
+
+        input = {
+          kb_layout = "us";
+          follow_mouse = 1;
+          sensitivity = 0;
+          touchpad = {
+            natural_scroll = true;
+            tap-to-click   = true;
+          };
+        };
+
+        dwindle = {
+          pseudotile     = true;
+          preserve_split = true;
+        };
+
+        misc = {
+          force_default_wallpaper = 0;
+          disable_hyprland_logo   = true;
+        };
+
+        exec-once = [
+          "waybar"
+          "mako"
+          "hyprpaper"
+        ];
+
+        bind =
+          [
+            "$mod,       Return, exec,          $terminal"
+            "$mod,       Q,      killactive"
+            "$mod,       M,      exit"
+            "$mod,       V,      togglefloating"
+            "$mod,       F,      fullscreen"
+            "$mod,       R,      exec,          $menu"
+            "$mod,       P,      pseudo"
+
+            # Focus (vim-style)
+            "$mod,       H, movefocus, l"
+            "$mod,       L, movefocus, r"
+            "$mod,       K, movefocus, u"
+            "$mod,       J, movefocus, d"
+
+            # Move windows
+            "$mod SHIFT, H, movewindow, l"
+            "$mod SHIFT, L, movewindow, r"
+            "$mod SHIFT, K, movewindow, u"
+            "$mod SHIFT, J, movewindow, d"
+
+            # Screenshot: region → clipboard
+            "$mod SHIFT, S, exec, grim -g \"$(slurp)\" - | wl-copy"
+            ",           Print, exec, grim - | wl-copy"
+          ]
+          ++ (map (n: "$mod,       ${toString n}, workspace,       ${toString n}") (lib.range 1 9))
+          ++ [ "$mod,       0, workspace,       10" ]
+          ++ (map (n: "$mod SHIFT, ${toString n}, movetoworkspace, ${toString n}") (lib.range 1 9))
+          ++ [ "$mod SHIFT, 0, movetoworkspace, 10" ];
+
+        bindm = [
+          "$mod, mouse:272, movewindow"
+          "$mod, mouse:273, resizewindow"
+        ];
+
+        bindel = [
+          ", XF86AudioRaiseVolume,  exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+          ", XF86AudioLowerVolume,  exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+          ", XF86AudioMute,         exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          ", XF86AudioPlay,         exec, playerctl play-pause"
+          ", XF86AudioNext,         exec, playerctl next"
+          ", XF86AudioPrev,         exec, playerctl previous"
+          ", XF86MonBrightnessUp,   exec, brightnessctl set +10%"
+          ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
+        ];
+      };
+    };
+
+    # Wallpaper
+    xdg.configFile."hypr/hyprpaper.conf".text = ''
+      preload = ~/Documents/myNixOS/wallpapers/nord-apple.jpg
+      wallpaper = ,~/Documents/myNixOS/wallpapers/nord-apple.jpg
+      splash = false
+    '';
+
+    # Status bar — Stylix handles colors
+    programs.waybar = {
+      enable = true;
+      settings = [{
+        layer    = "top";
+        position = "top";
+        height   = 32;
+
+        modules-left   = [ "hyprland/workspaces" "hyprland/window" ];
+        modules-center = [ "clock" ];
+        modules-right  = [ "pulseaudio" "network" "backlight" "battery" "tray" ];
+
+        "hyprland/workspaces" = {
+          format   = "{id}";
+          on-click = "activate";
+        };
+
+        "hyprland/window" = {
+          max-length = 60;
+        };
+
+        clock = {
+          format     = " {:%H:%M}";
+          format-alt = " {:%A, %B %d %Y}";
+          tooltip-format = "<tt>{calendar}</tt>";
+        };
+
+        battery = {
+          states  = { warning = 30; critical = 15; };
+          format  = "{icon} {capacity}%";
+          format-charging = " {capacity}%";
+          format-icons = [ "" "" "" "" "" ];
+        };
+
+        network = {
+          format-wifi       = " {essid}";
+          format-ethernet   = " {ipaddr}";
+          format-disconnected = "󰤭";
+          tooltip-format    = "{ifname}: {ipaddr}";
+        };
+
+        pulseaudio = {
+          format       = "{icon} {volume}%";
+          format-muted = "󰝟";
+          format-icons = { default = [ "" "" "" ]; };
+          on-click     = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+        };
+
+        backlight = {
+          format = " {percent}%";
+        };
+
+        tray = { spacing = 10; };
+      }];
+    };
+
+    # Notification daemon
+    services.mako = {
+      enable = true;
+      settings.default-timeout = 5000;
+    };
+
+    home.packages = with pkgs; [
+      wofi
+      hyprpaper
+      grim
+      slurp
+    ];
+  };
+}

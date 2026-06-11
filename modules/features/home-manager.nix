@@ -16,6 +16,7 @@
       self.homeModules.zsh
       self.homeModules.godot
       self.homeModules.libresprite
+      self.homeModules.hyprland
     ];
 
     home-manager.users.armaan = { ... }: {
