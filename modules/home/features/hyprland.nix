@@ -94,6 +94,9 @@
             # Clipboard history
             "SUPER SHIFT, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
 
+            # Caelestia settings (Nexus)
+            "SUPER, I, exec, caelestia shell \"nexus.open()\""
+
           ]
           ++ (map (n: "SUPER,       ${toString n}, workspace,       ${toString n}") (lib.range 1 9))
           ++ [ "SUPER,       0, workspace,       10" ]
