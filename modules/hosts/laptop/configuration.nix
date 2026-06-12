@@ -30,6 +30,8 @@
     services.displayManager.sddm = {
       enable = true;
       wayland.enable = false;
+      theme = "sddm-astronaut-theme";
+      extraPackages = [ pkgs.sddm-astronaut ];
     };
 
     services.xserver.xkb = {
