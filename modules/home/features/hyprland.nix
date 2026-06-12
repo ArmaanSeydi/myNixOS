@@ -3,6 +3,7 @@
 
     wayland.windowManager.hyprland = {
       enable = true;
+      configType = "hyprlang";
       xwayland.enable = true;
 
       settings = {
@@ -17,8 +18,8 @@
           gaps_in   = 4;
           gaps_out  = 8;
           border_size = 2;
-          "col.active_border"   = "rgba(88C0D0ff) rgba(81A1C1ff) 45deg";
-          "col.inactive_border" = "rgba(4C566Aff)";
+          "col.active_border"   = lib.mkForce "rgba(88C0D0ff) rgba(81A1C1ff) 45deg";
+          "col.inactive_border" = lib.mkForce "rgba(4C566Aff)";
           layout = "dwindle";
         };
 
