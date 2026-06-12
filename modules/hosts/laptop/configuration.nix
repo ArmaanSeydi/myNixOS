@@ -27,8 +27,10 @@
 
     services.xserver.enable = true;
 
-    services.displayManager.gdm.enable = true;
-    services.desktopManager.gnome.enable = true;
+    services.displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
 
     services.xserver.xkb = {
       layout = "us";
@@ -62,15 +64,12 @@
         firefox
         steam
         vlc
-        gnomeExtensions.caffeine
-        gnome-tweaks
         obsidian
       ];
     };
 
 
     environment.systemPackages = with pkgs; [
-      gnome-boxes
       claude-code
     ];
     

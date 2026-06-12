@@ -72,7 +72,7 @@
             "SUPER,       M,      exit"
             "SUPER,       V,      togglefloating"
             "SUPER,       F,      fullscreen"
-            "SUPER,       R,      exec,          wofi --show drun"
+            "SUPER,       R,      exec,          caelestia shell \"drawers.toggle('launcher')\""
             "SUPER,       P,      pseudo"
 
             # Focus (vim-style)
@@ -92,7 +92,7 @@
             ",            Print, exec, grim - | wl-copy"
 
             # Clipboard history
-            "SUPER SHIFT, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
+            "SUPER SHIFT, V, exec, cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"
 
             # Caelestia settings (Nexus)
             "SUPER, I, exec, caelestia shell \"nexus.open()\""
@@ -134,7 +134,7 @@
     '';
 
     home.packages = with pkgs; [
-      wofi
+      fuzzel
       hyprpaper
       grim
       slurp

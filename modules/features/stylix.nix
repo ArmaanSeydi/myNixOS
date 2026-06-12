@@ -1,4 +1,4 @@
-{ inputs, self, ... }: {
+{ inputs, ... }: {
   flake.nixosModules.stylix = { pkgs, ... }: {
     imports = [
       inputs.stylix.nixosModules.stylix
@@ -9,7 +9,7 @@
 
       polarity = "dark";
 
-      image = "${self}/wallpapers/nord-apple.jpg";
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
 
       fonts = {
         serif = {
