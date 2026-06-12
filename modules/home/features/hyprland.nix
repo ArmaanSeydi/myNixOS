@@ -272,9 +272,6 @@
       };
     };
 
-    # Network tray applet (provides connection dropdown/notifications)
-    services.network-manager-applet.enable = true;
-
     # Clipboard history (Super+Shift+V to paste from history)
     services.cliphist.enable = true;
   };
