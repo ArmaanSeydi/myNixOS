@@ -27,14 +27,19 @@
 
     services.xserver.enable = true;
 
-    programs.regreet = {
-      enable = true;
-      settings = {
-        GTK = {
-          application_prefer_dark_theme = true;
-        };
-      };
-    };
+    programs.regreet.enable = true;
+
+    # Replace cage with sway so we can enable tap-to-click via libinput config.
+    # programs.regreet uses lib.mkDefault for the session command, so this wins.
+    services.greetd.settings.default_session.command =
+      "${pkgs.dbus}/bin/dbus-run-session -- ${pkgs.sway}/bin/sway --config /etc/greetd/sway-config";
+
+    environment.etc."greetd/sway-config".text = ''
+      input type:touchpad {
+        tap enabled
+      }
+      exec "${pkgs.regreet}/bin/regreet; ${pkgs.sway}/bin/swaymsg exit"
+    '';
 
     services.xserver.xkb = {
       layout = "us";
