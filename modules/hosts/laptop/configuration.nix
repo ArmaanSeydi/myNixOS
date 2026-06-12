@@ -65,6 +65,7 @@
         steam
         vlc
         obsidian
+        nautilus
       ];
     };
 
