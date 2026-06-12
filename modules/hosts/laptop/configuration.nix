@@ -27,11 +27,14 @@
 
     services.xserver.enable = true;
 
-    services.displayManager.sddm = {
+    services.greetd = {
       enable = true;
-      wayland.enable = false;
-      theme = "sddm-astronaut-theme";
-      extraPackages = [ pkgs.sddm-astronaut ];
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --remember-session --sessions /run/current-system/sw/share/wayland-sessions";
+          user = "greeter";
+        };
+      };
     };
 
     services.xserver.xkb = {
