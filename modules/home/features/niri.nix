@@ -3,13 +3,23 @@
 
     home.packages = with pkgs; [
       swaybg
+      grim
+      slurp
+      swaylock
     ];
+
+    programs.caelestia = {
+      enable = true;
+      cli.enable = true;
+    };
 
     xdg.configFile."niri/config.kdl".text = ''
       environment {
           XCURSOR_THEME "Bibata-Modern-Ice"
           XCURSOR_SIZE "16"
       }
+
+      prefer-no-csd
 
       input {
           keyboard {
@@ -41,12 +51,18 @@
       }
 
       binds {
+          // Core
           Mod+Return { spawn "kitty"; }
           Mod+Q { close-window; }
           Mod+Shift+E { quit; }
           Mod+V { toggle-window-floating; }
           Mod+F { fullscreen-window; }
+          Mod+C { center-column; }
+          Mod+Tab { focus-workspace-previous; }
+
+          // Caelestia
           Mod+R { spawn "caelestia" "shell" "drawers" "toggle" "launcher"; }
+          Mod+I { spawn "caelestia" "shell" "nexus" "open"; }
 
           // Focus (vim-style)
           Mod+H { focus-column-left; }
@@ -59,6 +75,16 @@
           Mod+Shift+L { move-column-right; }
           Mod+Shift+K { move-window-up; }
           Mod+Shift+J { move-window-down; }
+
+          // Resize columns and windows
+          Mod+Minus { set-column-width "-10%"; }
+          Mod+Equal { set-column-width "+10%"; }
+          Mod+Shift+Minus { set-window-height "-10%"; }
+          Mod+Shift+Equal { set-window-height "+10%"; }
+
+          // Stack/unstack windows in a column
+          Mod+Comma { consume-window-into-column; }
+          Mod+Period { expel-window-from-column; }
 
           // Workspaces
           Mod+1 { focus-workspace 1; }
@@ -83,15 +109,15 @@
           Mod+Shift+9 { move-window-to-workspace 9; }
           Mod+Shift+0 { move-window-to-workspace 10; }
 
-          // Screenshot — saves to ~/Pictures/Screenshots/
+          // Screenshots (built-in niri actions)
           Mod+Shift+S { screenshot; }
           Print { screenshot-screen; }
 
           // Clipboard history
           Mod+Shift+V { spawn "sh" "-c" "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"; }
 
-          // Caelestia
-          Mod+I { spawn "caelestia" "shell" "nexus" "open"; }
+          // Screen lock
+          Ctrl+Alt+L { spawn "swaylock"; }
 
           // Audio
           XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+"; }
@@ -107,6 +133,7 @@
       }
 
       spawn-at-startup "swaybg" "-i" "${config.home.homeDirectory}/Documents/myNixOS/wallpapers/nord-apple.jpg" "-m" "fill"
+      spawn-at-startup "caelestia" "shell"
       spawn-at-startup "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
     '';
   };
