@@ -2,7 +2,7 @@
   flake.nixosModules.hyprland = { pkgs, ... }: {
     programs.hyprland = {
       enable = true;
-      withUWSM = false;
+      withUWSM = true;
       xwayland.enable = true;
     };
 
