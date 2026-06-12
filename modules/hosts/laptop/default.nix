@@ -8,6 +8,7 @@
       self.nixosModules.stylix
       self.nixosModules.fonts
       self.nixosModules.hyprland
+      self.nixosModules.niri
 #      self.nixosModules.secureBoot
     ];
   };
