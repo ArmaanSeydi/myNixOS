@@ -46,6 +46,7 @@
       nixvim.enable = true;
       kmscon.enable = false;
       qt.enable = false;
+      sddm.enable = true;
     };
   };
 }
