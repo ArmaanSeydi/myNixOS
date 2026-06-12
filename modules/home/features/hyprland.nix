@@ -94,8 +94,6 @@
             # Clipboard history
             "SUPER SHIFT, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
 
-            # Lock screen
-            "SUPER,       Delete, exec, hyprlock"
           ]
           ++ (map (n: "SUPER,       ${toString n}, workspace,       ${toString n}") (lib.range 1 9))
           ++ [ "SUPER,       0, workspace,       10" ]
@@ -119,7 +117,6 @@
         ];
 
         "exec-once" = [
-          "waybar"
           "hyprpaper"
           "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
         ];
@@ -133,69 +130,6 @@
       splash = false
     '';
 
-    # Status bar — Stylix handles colors
-    programs.waybar = {
-      enable = true;
-      settings = [{
-        layer    = "top";
-        position = "top";
-        height   = 32;
-
-        modules-left   = [ "hyprland/workspaces" "hyprland/window" ];
-        modules-center = [ "clock" ];
-        modules-right  = [ "pulseaudio" "network" "backlight" "battery" "tray" ];
-
-        "hyprland/workspaces" = {
-          format   = "{id}";
-          on-click = "activate";
-        };
-
-        "hyprland/window" = {
-          max-length = 60;
-        };
-
-        clock = {
-          format     = "󰥔 {:%H:%M}";
-          format-alt = "󰃭 {:%A, %B %d %Y}";
-          tooltip-format = "<tt>{calendar}</tt>";
-        };
-
-        battery = {
-          states  = { warning = 30; critical = 15; };
-          format  = "{icon} {capacity}%";
-          format-charging = "󰂄 {capacity}%";
-          format-icons = [ "󰁺" "󰁼" "󰁿" "󰂁" "󰁹" ];
-        };
-
-        network = {
-          format-wifi       = "󰤨 {essid}";
-          format-ethernet   = "󰈀 {ipaddr}";
-          format-disconnected = "󰤭";
-          tooltip-format    = "{ifname}: {ipaddr}";
-          on-click          = "nm-connection-editor";
-        };
-
-        pulseaudio = {
-          format       = "{icon} {volume}%";
-          format-muted = "󰝟";
-          format-icons = { default = [ "󰕿" "󰖀" "󰕾" ]; };
-          on-click     = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-        };
-
-        backlight = {
-          format = "󰃠 {percent}%";
-        };
-
-        tray = { spacing = 10; };
-      }];
-    };
-
-    # Notification daemon
-    services.mako = {
-      enable = true;
-      settings.default-timeout = 5000;
-    };
-
     home.packages = with pkgs; [
       wofi
       hyprpaper
@@ -203,65 +137,10 @@
       slurp
     ];
 
-    # Idle management: dim → lock → display off
-    services.hypridle = {
+    # Desktop shell — replaces Waybar, mako, hyprlock, and hypridle
+    programs.caelestia = {
       enable = true;
-      settings = {
-        general = {
-          lock_cmd         = "hyprlock";
-          before_sleep_cmd = "hyprlock";
-          after_sleep_cmd  = "hyprctl dispatch dpms on";
-        };
-        listener = [
-          {
-            timeout    = 300;
-            on-timeout = "brightnessctl set 20%";
-            on-resume  = "brightnessctl set 100%";
-          }
-          {
-            timeout    = 600;
-            on-timeout = "hyprlock";
-          }
-          {
-            timeout    = 660;
-            on-timeout = "hyprctl dispatch dpms off";
-            on-resume  = "hyprctl dispatch dpms on";
-          }
-        ];
-      };
-    };
-
-    # Lock screen — Stylix handles background and input-field colors
-    programs.hyprlock = {
-      enable = true;
-      settings = {
-        general = {
-          disable_loading_bar = true;
-          hide_cursor         = true;
-        };
-        label = [
-          {
-            monitor     = "";
-            text        = ''cmd[update:1000] echo "$(date +"%H:%M")"'';
-            color       = "rgba(229, 233, 240, 1.0)";
-            font_size   = 64;
-            font_family = "JetBrainsMono Nerd Font";
-            position    = "0, 160";
-            halign      = "center";
-            valign      = "center";
-          }
-          {
-            monitor     = "";
-            text        = ''cmd[update:60000] echo "$(date +"%A, %B %d")"'';
-            color       = "rgba(216, 222, 233, 1.0)";
-            font_size   = 18;
-            font_family = "JetBrainsMono Nerd Font";
-            position    = "0, 80";
-            halign      = "center";
-            valign      = "center";
-          }
-        ];
-      };
+      cli.enable = true;
     };
 
     gtk = {
