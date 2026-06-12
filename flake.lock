@@ -99,7 +99,9 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "quickshell": "quickshell"
+        "quickshell": [
+          "quickshell"
+        ]
       },
       "locked": {
         "lastModified": 1781178648,
@@ -357,22 +359,22 @@
     "quickshell": {
       "inputs": {
         "nixpkgs": [
-          "caelestia-shell",
           "nixpkgs"
         ]
       },
       "locked": {
         "lastModified": 1780303737,
         "narHash": "sha256-7HgdJBG4BgAPDyHKKxWtxj7nziqsQo6zQCXtwy+L9fs=",
-        "ref": "refs/heads/master",
+        "owner": "outfoxxed",
+        "repo": "quickshell",
         "rev": "b66495fcc5022681b56b61f928c7acbe910e722c",
-        "revCount": 821,
-        "type": "git",
-        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+        "owner": "outfoxxed",
+        "repo": "quickshell",
+        "rev": "b66495fcc5022681b56b61f928c7acbe910e722c",
+        "type": "github"
       }
     },
     "root": {
@@ -383,6 +385,7 @@
         "import-tree": "import-tree",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
+        "quickshell": "quickshell",
         "stylix": "stylix"
       }
     },
