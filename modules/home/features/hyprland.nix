@@ -72,7 +72,7 @@
             "SUPER,       M,      exit"
             "SUPER,       V,      togglefloating"
             "SUPER,       F,      fullscreen"
-            "SUPER,       R,      exec,          caelestia shell \"drawers.toggle('launcher')\""
+            "SUPER,       R,      exec,          caelestia shell drawers toggle launcher"
             "SUPER,       P,      pseudo"
 
             # Focus (vim-style)
@@ -95,7 +95,7 @@
             "SUPER SHIFT, V, exec, cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"
 
             # Caelestia settings (Nexus)
-            "SUPER, I, exec, caelestia shell \"nexus.open()\""
+            "SUPER, I, exec, caelestia shell nexus open"
 
           ]
           ++ (map (n: "SUPER,       ${toString n}, workspace,       ${toString n}") (lib.range 1 9))
