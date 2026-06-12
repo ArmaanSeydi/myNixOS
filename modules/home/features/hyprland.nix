@@ -263,6 +263,14 @@
       };
     };
 
+    gtk = {
+      enable = true;
+      iconTheme = {
+        package = pkgs.adwaita-icon-theme;
+        name = "Adwaita";
+      };
+    };
+
     # Network tray applet
     services.network-manager-applet.enable = true;
 
