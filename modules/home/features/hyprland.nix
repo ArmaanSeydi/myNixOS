@@ -172,6 +172,7 @@
           format-ethernet   = "󰈀 {ipaddr}";
           format-disconnected = "󰤭";
           tooltip-format    = "{ifname}: {ipaddr}";
+          on-click          = "nm-connection-editor";
         };
 
         pulseaudio = {
@@ -271,7 +272,7 @@
       };
     };
 
-    # Network tray applet
+    # Network tray applet (provides connection dropdown/notifications)
     services.network-manager-applet.enable = true;
 
     # Clipboard history (Super+Shift+V to paste from history)
