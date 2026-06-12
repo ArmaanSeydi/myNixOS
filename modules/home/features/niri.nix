@@ -13,7 +13,10 @@
       cli.enable = true;
     };
 
-    xdg.configFile."niri/config.kdl".text = ''
+    xdg.configFile."niri/config.kdl".text =
+      let
+        caelestia = "${config.programs.caelestia.cli.package}/bin/caelestia";
+      in ''
       environment {
           XCURSOR_THEME "Bibata-Modern-Ice"
           XCURSOR_SIZE "16"
@@ -61,8 +64,8 @@
           Mod+Tab { focus-workspace-previous; }
 
           // Caelestia
-          Mod+R { spawn "caelestia" "shell" "drawers" "toggle" "launcher"; }
-          Mod+I { spawn "caelestia" "shell" "nexus" "open"; }
+          Mod+R { spawn "${caelestia}" "shell" "drawers" "toggle" "launcher"; }
+          Mod+I { spawn "${caelestia}" "shell" "nexus" "open"; }
 
           // Focus (vim-style)
           Mod+H { focus-column-left; }
@@ -133,7 +136,7 @@
       }
 
       spawn-at-startup "swaybg" "-i" "${config.home.homeDirectory}/Documents/myNixOS/wallpapers/nord-apple.jpg" "-m" "fill"
-      spawn-at-startup "caelestia" "shell"
+      spawn-at-startup "${caelestia}" "shell"
       spawn-at-startup "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
     '';
   };
