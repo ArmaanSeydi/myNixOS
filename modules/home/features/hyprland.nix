@@ -155,21 +155,21 @@
         };
 
         clock = {
-          format     = " {:%H:%M}";
-          format-alt = " {:%A, %B %d %Y}";
+          format     = "󰥔 {:%H:%M}";
+          format-alt = "󰃭 {:%A, %B %d %Y}";
           tooltip-format = "<tt>{calendar}</tt>";
         };
 
         battery = {
           states  = { warning = 30; critical = 15; };
           format  = "{icon} {capacity}%";
-          format-charging = " {capacity}%";
-          format-icons = [ "" "" "" "" "" ];
+          format-charging = "󰂄 {capacity}%";
+          format-icons = [ "󰁺" "󰁼" "󰁿" "󰂁" "󰁹" ];
         };
 
         network = {
-          format-wifi       = " {essid}";
-          format-ethernet   = " {ipaddr}";
+          format-wifi       = "󰤨 {essid}";
+          format-ethernet   = "󰈀 {ipaddr}";
           format-disconnected = "󰤭";
           tooltip-format    = "{ifname}: {ipaddr}";
         };
@@ -177,12 +177,12 @@
         pulseaudio = {
           format       = "{icon} {volume}%";
           format-muted = "󰝟";
-          format-icons = { default = [ "" "" "" ]; };
+          format-icons = { default = [ "󰕿" "󰖀" "󰕾" ]; };
           on-click     = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
         };
 
         backlight = {
-          format = " {percent}%";
+          format = "󰃠 {percent}%";
         };
 
         tray = { spacing = 10; };
