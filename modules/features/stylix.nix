@@ -46,36 +46,6 @@
       nixvim.enable = true;
       kmscon.enable = false;
       qt.enable = false;
-      regreet.extraCss = ''
-        window {
-          background-color: @window_bg_color;
-        }
-
-        .clock {
-          font-size: 72px;
-          font-weight: 300;
-          margin-bottom: 4px;
-        }
-
-        entry {
-          border-radius: 8px;
-          padding: 10px 14px;
-        }
-
-        entry:focus {
-          box-shadow: 0 0 0 2px alpha(@accent_bg_color, 0.35);
-        }
-
-        button {
-          border-radius: 8px;
-          padding: 8px 18px;
-        }
-
-        combobox > button,
-        dropdown > button {
-          border-radius: 8px;
-        }
-      '';
     };
   };
 }
