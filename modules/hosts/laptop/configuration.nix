@@ -67,8 +67,8 @@
         steam
         vlc
         obsidian
-        xfce.thunar
-        xfce.thunar-volman
+        thunar
+        thunar-volman
       ];
     };
 
