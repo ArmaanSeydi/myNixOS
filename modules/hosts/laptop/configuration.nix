@@ -96,6 +96,15 @@
     
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+    nix.settings.extra-substituters = [ "https://noctalia.cachix.org" ];
+    nix.settings.extra-trusted-public-keys = [
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+    ];
+
+    services.upower.enable = true;
+    services.power-profiles-daemon.enable = true;
+    hardware.bluetooth.enable = true;
+
     system.stateVersion = "26.05"; 
 
   };

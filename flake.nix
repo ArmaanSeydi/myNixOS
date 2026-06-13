@@ -19,15 +19,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    caelestia-shell = {
-      url = "github:caelestia-dots/shell/stable";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.quickshell.follows = "quickshell";
-    };
-
-    # Mirror for quickshell — git.outfoxxed.me is unreliable; pin to the same rev
-    quickshell = {
-      url = "github:outfoxxed/quickshell/b66495fcc5022681b56b61f928c7acbe910e722c";
+    noctalia = {
+      url = "github:noctalia-dev/noctalia/legacy-v4";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

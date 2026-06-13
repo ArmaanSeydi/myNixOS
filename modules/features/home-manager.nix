@@ -11,7 +11,7 @@
     nixpkgs.config.allowUnfree = true;
     home-manager.sharedModules = [
       inputs.nixvim.homeModules.nixvim
-      inputs.caelestia-shell.homeManagerModules.default
+      inputs.noctalia.homeModules.default
       self.homeModules.nixvim
       self.homeModules.tmux
       self.homeModules.kitty

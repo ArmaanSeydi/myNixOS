@@ -5,17 +5,15 @@
       swaybg
       grim
       slurp
-      swaylock
     ];
 
-    programs.caelestia = {
+    programs.noctalia-shell = {
       enable = true;
-      cli.enable = true;
     };
 
     xdg.configFile."niri/config.kdl".text =
       let
-        caelestia = "${config.programs.caelestia.cli.package}/bin/caelestia";
+        noctalia = "${config.programs.noctalia-shell.package}/bin/noctalia-shell";
       in ''
       environment {
           XCURSOR_THEME "Bibata-Modern-Ice"
@@ -63,9 +61,9 @@
           Mod+C { center-column; }
           Mod+Tab { focus-workspace-previous; }
 
-          // Caelestia
-          Mod+R { spawn "${caelestia}" "shell" "drawers" "toggle" "launcher"; }
-          Mod+I { spawn "${caelestia}" "shell" "nexus" "open"; }
+          // Noctalia
+          Mod+R { spawn "${noctalia}" "ipc" "call" "launcher" "toggle"; }
+          Mod+I { spawn "${noctalia}" "ipc" "call" "controlCenter" "toggle"; }
 
           // Focus (vim-style)
           Mod+H { focus-column-left; }
@@ -120,7 +118,7 @@
           Mod+Shift+V { spawn "sh" "-c" "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"; }
 
           // Screen lock
-          Ctrl+Alt+L { spawn "swaylock"; }
+          Ctrl+Alt+L { spawn "${noctalia}" "ipc" "call" "lockScreen" "lock"; }
 
           // Audio
           XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+"; }
@@ -136,7 +134,7 @@
       }
 
       spawn-at-startup "swaybg" "-i" "${config.home.homeDirectory}/Documents/myNixOS/wallpapers/nord-apple.jpg" "-m" "fill"
-      spawn-at-startup "${caelestia}" "shell"
+      spawn-at-startup "${noctalia}"
       spawn-at-startup "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
     '';
   };

@@ -72,7 +72,7 @@
             "SUPER,       M,      exit"
             "SUPER,       V,      togglefloating"
             "SUPER,       F,      fullscreen"
-            "SUPER,       R,      exec,          caelestia shell drawers toggle launcher"
+            "SUPER,       R,      exec,          noctalia-shell ipc call launcher toggle"
             "SUPER,       P,      pseudo"
 
             # Focus (vim-style)
@@ -94,8 +94,8 @@
             # Clipboard history
             "SUPER SHIFT, V, exec, cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"
 
-            # Caelestia settings (Nexus)
-            "SUPER, I, exec, caelestia shell nexus open"
+            # Noctalia control center
+            "SUPER, I, exec, noctalia-shell ipc call controlCenter toggle"
 
           ]
           ++ (map (n: "SUPER,       ${toString n}, workspace,       ${toString n}") (lib.range 1 9))
@@ -140,10 +140,8 @@
       slurp
     ];
 
-    # Desktop shell — replaces Waybar, mako, hyprlock, and hypridle
-    programs.caelestia = {
+    programs.noctalia-shell = {
       enable = true;
-      cli.enable = true;
     };
 
     gtk = {
