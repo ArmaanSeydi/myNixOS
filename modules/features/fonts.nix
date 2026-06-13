@@ -19,7 +19,6 @@
         unifont # covers the entire Unicode BMP as a last-resort fallback
 
         # Bitmap / pixel fonts
-        tewi-font
         envypn-font
         gohufont
 
