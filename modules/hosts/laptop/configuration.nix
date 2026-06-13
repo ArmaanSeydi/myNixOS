@@ -61,7 +61,7 @@
       isNormalUser = true;
       description = "Armaan Seydi";
       shell = pkgs.zsh;
-      extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" ];
+      extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" "video" ];
       packages = with pkgs; [
         firefox
         steam
@@ -83,7 +83,7 @@
           font = "JetBrainsMono Nerd Font";
           passwordFontSize = 48;
           passwordInputWidth = "0.35";
-          passwordCharacter = "*";
+          passwordCharacter = "󰜗";
           cursorBlinkAnimation = true;
         };
       })
