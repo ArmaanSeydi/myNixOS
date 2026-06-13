@@ -83,7 +83,7 @@
           font = "JetBrainsMono Nerd Font";
           passwordFontSize = 48;
           passwordInputWidth = "0.35";
-          passwordCharacter = "•";
+          passwordCharacter = "*";
           cursorBlinkAnimation = true;
         };
       })
