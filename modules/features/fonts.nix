@@ -17,6 +17,14 @@
         # Extended Unicode fallback
         dejavu_fonts
         unifont # covers the entire Unicode BMP as a last-resort fallback
+
+        # Bitmap / pixel fonts
+        tewi-font
+        envypn-font
+        gohufont
+
+        # Programmer monospace
+        iosevka-bin
       ];
 
       fontconfig = {

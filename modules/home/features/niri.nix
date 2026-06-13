@@ -59,6 +59,16 @@
           clip-to-geometry true
       }
 
+      window-rule {
+          is-focused true
+          opacity 0.9
+      }
+
+      window-rule {
+          is-focused false
+          opacity 0.7
+      }
+
       layout {
           gaps 12
 
@@ -163,7 +173,7 @@
           XF86MonBrightnessDown { spawn "${brightnessctl}" "set" "10%-"; }
       }
 
-      spawn-at-startup "${swaybg}" "-i" "${config.home.homeDirectory}/Documents/myNixOS/wallpapers/nord-apple.jpg" "-m" "fill"
+      spawn-at-startup "${swaybg}" "-i" "${../../../wallpapers/nord-apple.jpg}" "-m" "fill"
       spawn-at-startup "${noctalia}"
       spawn-at-startup "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
     '';
