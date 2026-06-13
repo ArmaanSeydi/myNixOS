@@ -24,6 +24,7 @@
 
         # Programmer monospace
         iosevka-bin
+        nerd-fonts.jetbrains-mono
       ];
 
       fontconfig = {
