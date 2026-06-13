@@ -50,6 +50,8 @@
           }
           mouse {
           }
+
+          focus-follows-mouse
       }
 
       window-rule {
