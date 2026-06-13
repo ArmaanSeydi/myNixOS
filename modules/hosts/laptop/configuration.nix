@@ -71,6 +71,30 @@
         thunar
         thunar-volman
         nautilus
+
+        # Image viewer
+        imv
+
+        # Music player
+        amberol
+
+        # PDF viewer
+        evince
+
+        # Archive manager
+        file-roller
+
+        # Office suite
+        libreoffice
+
+        # Torrent client
+        qbittorrent
+
+        # Email client
+        thunderbird
+
+        # Calculator
+        gnome-calculator
       ];
     };
 

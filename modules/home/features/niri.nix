@@ -13,8 +13,8 @@
     gtk = {
       enable = true;
       iconTheme = {
-        package = pkgs.papirus-icon-theme.override { color = "nordic"; };
-        name = "Papirus-Dark";
+        package = pkgs.nordzy-icon-theme;
+        name = "Nordzy-dark";
       };
     };
 
