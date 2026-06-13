@@ -67,7 +67,8 @@
         steam
         vlc
         obsidian
-        nautilus
+        xfce.thunar
+        xfce.thunar-volman
       ];
     };
 
@@ -108,6 +109,7 @@
     ];
 
     services.gvfs.enable = true;
+    services.tumbler.enable = true;
     services.upower.enable = true;
     services.power-profiles-daemon.enable = true;
     hardware.bluetooth.enable = true;

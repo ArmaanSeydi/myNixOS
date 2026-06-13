@@ -13,8 +13,8 @@
     gtk = {
       enable = true;
       iconTheme = {
-        package = pkgs.adwaita-icon-theme;
-        name = "Adwaita";
+        package = pkgs.papirus-icon-theme.override { color = "nordic-darker"; };
+        name = "Papirus-Dark";
       };
     };
 
