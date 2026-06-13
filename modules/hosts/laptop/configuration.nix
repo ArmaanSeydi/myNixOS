@@ -74,19 +74,22 @@
 
     environment.systemPackages = with pkgs; [
       claude-code
-      (where-is-my-sddm-theme.override {
-        themeConfig.General = {
-          backgroundFill = "#2E3440";
-          basicTextColor = "#ECEFF4";
-          passwordCursorColor = "#88C0D0";
-          passwordTextColor = "#ECEFF4";
-          font = "JetBrainsMono Nerd Font";
-          passwordFontSize = "48";
-          passwordInputWidth = "0.35";
-          passwordCharacter = "•";
-          cursorBlinkAnimation = "true";
-        };
-      })
+      (where-is-my-sddm-theme.overrideAttrs (_: {
+        postInstall = ''
+          cat > $out/share/sddm/themes/where_is_my_sddm_theme/theme.conf <<'EOF'
+          [General]
+          backgroundFill=#2E3440
+          basicTextColor=#ECEFF4
+          passwordCursorColor=#88C0D0
+          passwordTextColor=#ECEFF4
+          font=JetBrainsMono Nerd Font
+          passwordFontSize=48
+          passwordInputWidth=0.35
+          passwordCharacter=•
+          cursorBlinkAnimation=true
+          EOF
+        '';
+      }))
     ];
     
     nix.gc = {
