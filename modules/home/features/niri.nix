@@ -14,6 +14,7 @@
     xdg.configFile."niri/config.kdl".text =
       let
         noctalia = "${config.programs.noctalia-shell.package}/bin/noctalia-shell";
+        kitty = "${pkgs.kitty}/bin/kitty";
       in ''
       environment {
           XCURSOR_THEME "Bibata-Modern-Ice"
@@ -53,7 +54,7 @@
 
       binds {
           // Core
-          Mod+Return { spawn "kitty"; }
+          Mod+Return { spawn "${kitty}"; }
           Mod+Q { close-window; }
           Mod+Shift+E { quit; }
           Mod+V { toggle-window-floating; }

@@ -1,5 +1,5 @@
 { ... }: {
-  flake.homeModules.hyprland = { pkgs, lib, ... }: {
+  flake.homeModules.hyprland = { pkgs, lib, config, ... }: {
 
     wayland.windowManager.hyprland = {
       enable = true;
@@ -122,6 +122,7 @@
         "exec-once" = [
           "hyprpaper"
           "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
+          "${config.programs.noctalia-shell.package}/bin/noctalia-shell"
         ];
       };
     };
