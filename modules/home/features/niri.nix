@@ -52,9 +52,13 @@
           }
       }
 
+      window-rule {
+          geometry-corner-radius 12
+          clip-to-geometry true
+      }
+
       layout {
           gaps 12
-          corner-radius 12
 
           focus-ring {
               width 2
