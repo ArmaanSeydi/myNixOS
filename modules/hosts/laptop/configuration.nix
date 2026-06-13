@@ -8,6 +8,7 @@
 
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
+    boot.kernelParams = [ "usbcore.quirks=325d:6410:k" ];
     
     #services.resolved.enable = true;
     #networking.nameservers = [
