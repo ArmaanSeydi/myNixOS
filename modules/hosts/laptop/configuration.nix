@@ -35,6 +35,7 @@
       enable = true;
       wayland.enable = true;
       theme = "where_is_my_sddm_theme";
+      extraPackages = [ pkgs.qt6Packages.qt5compat ];
     };
     services.displayManager.defaultSession = "niri";
 
