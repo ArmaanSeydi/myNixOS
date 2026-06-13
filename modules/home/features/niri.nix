@@ -60,12 +60,12 @@
       }
 
       window-rule {
-          is-focused true
+          matches is-focused=true
           opacity 0.9
       }
 
       window-rule {
-          is-focused false
+          matches is-focused=false
           opacity 0.7
       }
 
