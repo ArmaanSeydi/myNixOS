@@ -31,7 +31,12 @@
       variant = "";
     };
 
-    services.displayManager.gdm.enable = true;
+    services.displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+      theme = "where_is_my_sddm_theme";
+    };
+    services.displayManager.defaultSession = "niri";
 
     services.printing.enable = true;
 
@@ -68,6 +73,19 @@
 
     environment.systemPackages = with pkgs; [
       claude-code
+      (where-is-my-sddm-theme.override {
+        themeConfig.General = {
+          backgroundFill = "#2E3440";
+          basicTextColor = "#ECEFF4";
+          passwordCursorColor = "#88C0D0";
+          passwordTextColor = "#ECEFF4";
+          font = "JetBrainsMono Nerd Font";
+          passwordFontSize = "48";
+          passwordInputWidth = "0.35";
+          passwordCharacter = "•";
+          cursorBlinkAnimation = "true";
+        };
+      })
     ];
     
     nix.gc = {
