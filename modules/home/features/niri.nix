@@ -61,12 +61,12 @@
 
       window-rule {
           match is-focused=true
-          opacity 1.0
+          opacity 0.9
       }
 
       window-rule {
           match is-focused=false
-          opacity 0.8
+          opacity 0.75
       }
 
       layout {

@@ -29,7 +29,7 @@ cursor_blink_interval      = "0.5";
         cursor_stop_blinking_after = "15.0";
 
         # Subtle transparency
-        background_opacity         = lib.mkForce "0.94";
+        background_opacity         = lib.mkForce "0.9";
         dynamic_background_opacity = "yes";
 
         # Tab bar
