@@ -70,6 +70,7 @@
         obsidian
         thunar
         thunar-volman
+        nautilus
       ];
     };
 
