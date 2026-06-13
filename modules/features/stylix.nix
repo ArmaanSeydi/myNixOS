@@ -46,6 +46,7 @@
       nixvim.enable = true;
       kmscon.enable = false;
       qt.enable = false;
+      console.enable = false;
     };
   };
 }

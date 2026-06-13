@@ -8,7 +8,10 @@
 
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
-    boot.kernelParams = [ "usbcore.quirks=325d:6410:k" ];
+    boot.kernelParams = [ "usbcore.quirks=325d:6410:k" "quiet" "loglevel=3" ];
+    boot.initrd.verbose = false;
+    boot.consoleLogLevel = 0;
+    boot.plymouth.enable = true;
     
     #services.resolved.enable = true;
     #networking.nameservers = [
@@ -103,7 +106,7 @@
       claude-code
       (where-is-my-sddm-theme.override {
         themeConfig.General = {
-          backgroundFill = "#2E3440";
+          backgroundFill = "#000000";
           basicTextColor = "#ECEFF4";
           passwordCursorColor = "#88C0D0";
           passwordTextColor = "#ECEFF4";
