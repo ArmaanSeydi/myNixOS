@@ -15,6 +15,10 @@
       let
         noctalia = "${config.programs.noctalia-shell.package}/bin/noctalia-shell";
         kitty = "${pkgs.kitty}/bin/kitty";
+        swaybg = "${pkgs.swaybg}/bin/swaybg";
+        wpctl = "${pkgs.pipewire}/bin/wpctl";
+        playerctl = "${pkgs.playerctl}/bin/playerctl";
+        brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
       in ''
       environment {
           XCURSOR_THEME "Bibata-Modern-Ice"
@@ -34,7 +38,6 @@
               tap
           }
           mouse {
-              natural-scroll false
           }
       }
 
@@ -122,19 +125,19 @@
           Ctrl+Alt+L { spawn "${noctalia}" "ipc" "call" "lockScreen" "lock"; }
 
           // Audio
-          XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+"; }
-          XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
-          XF86AudioMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-          XF86AudioPlay { spawn "playerctl" "play-pause"; }
-          XF86AudioNext { spawn "playerctl" "next"; }
-          XF86AudioPrev { spawn "playerctl" "previous"; }
+          XF86AudioRaiseVolume allow-when-locked=true { spawn "${wpctl}" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+"; }
+          XF86AudioLowerVolume allow-when-locked=true { spawn "${wpctl}" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
+          XF86AudioMute allow-when-locked=true { spawn "${wpctl}" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+          XF86AudioPlay { spawn "${playerctl}" "play-pause"; }
+          XF86AudioNext { spawn "${playerctl}" "next"; }
+          XF86AudioPrev { spawn "${playerctl}" "previous"; }
 
           // Brightness
-          XF86MonBrightnessUp { spawn "brightnessctl" "set" "+10%"; }
-          XF86MonBrightnessDown { spawn "brightnessctl" "set" "10%-"; }
+          XF86MonBrightnessUp { spawn "${brightnessctl}" "set" "+10%"; }
+          XF86MonBrightnessDown { spawn "${brightnessctl}" "set" "10%-"; }
       }
 
-      spawn-at-startup "swaybg" "-i" "${config.home.homeDirectory}/Documents/myNixOS/wallpapers/nord-apple.jpg" "-m" "fill"
+      spawn-at-startup "${swaybg}" "-i" "${config.home.homeDirectory}/Documents/myNixOS/wallpapers/nord-apple.jpg" "-m" "fill"
       spawn-at-startup "${noctalia}"
       spawn-at-startup "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
     '';
