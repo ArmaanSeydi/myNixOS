@@ -8,7 +8,6 @@
 
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
-    boot.kernelParams = [ "usbcore.autosuspend=-1" ];
     
     #services.resolved.enable = true;
     #networking.nameservers = [
@@ -108,6 +107,7 @@
       "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
     ];
 
+    services.gvfs.enable = true;
     services.upower.enable = true;
     services.power-profiles-daemon.enable = true;
     hardware.bluetooth.enable = true;
