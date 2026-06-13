@@ -80,10 +80,10 @@
           basicTextColor = "#ECEFF4";
           passwordCursorColor = "#88C0D0";
           passwordTextColor = "#ECEFF4";
-          font = "JetBrainsMono Nerd Font";
+          font = "DejaVu Sans Mono";
           passwordFontSize = 48;
           passwordInputWidth = "0.35";
-          passwordCharacter = "󰜗";
+          passwordCharacter = "*";
           cursorBlinkAnimation = true;
         };
       })
