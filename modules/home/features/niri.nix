@@ -5,7 +5,18 @@
       swaybg
       grim
       slurp
+      fuzzel
     ];
+
+    services.cliphist.enable = true;
+
+    gtk = {
+      enable = true;
+      iconTheme = {
+        package = pkgs.adwaita-icon-theme;
+        name = "Adwaita";
+      };
+    };
 
     programs.noctalia-shell = {
       enable = true;
@@ -42,7 +53,8 @@
       }
 
       layout {
-          gaps 8
+          gaps 12
+          corner-radius 12
 
           focus-ring {
               width 2
@@ -52,6 +64,14 @@
 
           border {
               off
+          }
+
+          shadow {
+              on
+              softness 30
+              spread 5
+              offset x=0 y=4
+              color "#00000080"
           }
       }
 

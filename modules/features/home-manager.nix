@@ -18,7 +18,6 @@
       self.homeModules.zsh
       self.homeModules.godot
       self.homeModules.libresprite
-      self.homeModules.hyprland
       self.homeModules.niri
     ];
 
