@@ -8,7 +8,6 @@
       self.nixosModules.stylix
       self.nixosModules.fonts
       self.nixosModules.niri
-      self.nixosModules.libfprintPatch
     ];
   };
 

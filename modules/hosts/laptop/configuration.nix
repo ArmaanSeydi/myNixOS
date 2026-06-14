@@ -137,10 +137,6 @@
       "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
     ];
 
-    services.fprintd.enable = true;
-    security.pam.services.sudo.fprintAuth = true;
-    security.pam.services.swaylock.fprintAuth = true;
-
     services.gvfs.enable = true;
     services.tumbler.enable = true;
     services.upower.enable = true;
