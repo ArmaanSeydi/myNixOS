@@ -1,0 +1,8 @@
+--- a/libfprint/drivers/elanmoc/elanmoc.c
++++ b/libfprint/drivers/elanmoc/elanmoc.c
+@@ -25,6 +25,7 @@ static const FpIdEntry id_table[] = {
+   { .vid = 0x04f3,  .pid = 0x0c7d,  },
+   { .vid = 0x04f3,  .pid = 0x0c7e,  },
++  { .vid = 0x04f3,  .pid = 0x0c5a,  },
+   { .vid = 0x04f3,  .pid = 0x0c82,  },
+   { .vid = 0x04f3,  .pid = 0x0c88,  },
