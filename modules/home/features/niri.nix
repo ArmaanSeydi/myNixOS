@@ -106,7 +106,7 @@
           }
           window-close {
               duration-ms 150
-              curve "ease-in-expo"
+              curve "ease-out-quad"
           }
           window-movement {
               spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
