@@ -20,6 +20,7 @@
       self.homeModules.libresprite
       self.homeModules.niri
       self.homeModules.noctalia
+      self.homeModules.firefox
     ];
 
     home-manager.users.armaan = { ... }: {
