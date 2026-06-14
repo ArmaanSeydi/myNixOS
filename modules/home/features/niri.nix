@@ -23,7 +23,7 @@
         noctalia = "${config.programs.noctalia-shell.package}/bin/noctalia-shell";
         kitty = "${pkgs.kitty}/bin/kitty";
         swaybg = "${pkgs.swaybg}/bin/swaybg";
-        wpctl = "${pkgs.pipewire}/bin/wpctl";
+        wpctl = "${pkgs.wireplumber}/bin/wpctl";
         playerctl = "${pkgs.playerctl}/bin/playerctl";
         brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
       in ''

@@ -106,10 +106,10 @@
       claude-code
       (where-is-my-sddm-theme.override {
         themeConfig.General = {
-          backgroundFill = "#000000";
-          basicTextColor = "#ECEFF4";
-          passwordCursorColor = "#88C0D0";
-          passwordTextColor = "#ECEFF4";
+          backgroundFill = "#${config.lib.stylix.colors.base00}";
+          basicTextColor = "#${config.lib.stylix.colors.base06}";
+          passwordCursorColor = "#${config.lib.stylix.colors.base0C}";
+          passwordTextColor = "#${config.lib.stylix.colors.base06}";
           font = "JetBrainsMono Nerd Font";
           passwordFontSize = 48;
           passwordInputWidth = "0.35";
