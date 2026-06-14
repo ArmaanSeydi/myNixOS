@@ -19,6 +19,7 @@
       self.homeModules.godot
       self.homeModules.libresprite
       self.homeModules.niri
+      self.homeModules.noctalia
     ];
 
     home-manager.users.armaan = { ... }: {

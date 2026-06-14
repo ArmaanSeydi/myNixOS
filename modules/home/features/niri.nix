@@ -18,10 +18,6 @@
       };
     };
 
-    programs.noctalia-shell = {
-      enable = true;
-    };
-
     xdg.configFile."niri/config.kdl".text =
       let
         noctalia = "${config.programs.noctalia-shell.package}/bin/noctalia-shell";
@@ -169,8 +165,8 @@
           XF86AudioPrev { spawn "${playerctl}" "previous"; }
 
           // Brightness
-          XF86MonBrightnessUp { spawn "${brightnessctl}" "set" "+10%"; }
-          XF86MonBrightnessDown { spawn "${brightnessctl}" "set" "10%-"; }
+          XF86MonBrightnessUp { spawn "${brightnessctl}" "set" "+5%"; }
+          XF86MonBrightnessDown { spawn "${brightnessctl}" "set" "5%-"; }
       }
 
       spawn-at-startup "${swaybg}" "-i" "${../../../wallpapers/nord-apple.jpg}" "-m" "fill"
