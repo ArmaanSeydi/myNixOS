@@ -47,7 +47,6 @@
       kmscon.enable = false;
       qt.enable = false;
       console.enable = false;
-      sddm.enable = false;
     };
   };
 }
