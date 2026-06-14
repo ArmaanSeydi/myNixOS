@@ -71,9 +71,8 @@
         steam
         vlc
         obsidian
-        thunar
-        thunar-volman
         nautilus
+        gnome-boxes
 
         # Image viewer
         imv
@@ -138,7 +137,6 @@
     ];
 
     services.gvfs.enable = true;
-    services.tumbler.enable = true;
     services.upower.enable = true;
     services.power-profiles-daemon.enable = true;
     hardware.bluetooth.enable = true;
