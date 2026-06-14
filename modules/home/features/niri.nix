@@ -20,6 +20,7 @@
 
     xdg.configFile."niri/config.kdl".text =
       let
+        c = config.lib.stylix.colors;
         noctalia = "${config.programs.noctalia-shell.package}/bin/noctalia-shell";
         kitty = "${pkgs.kitty}/bin/kitty";
         swaybg = "${pkgs.swaybg}/bin/swaybg";
@@ -48,6 +49,7 @@
           }
 
           focus-follows-mouse
+          warp-mouse-to-focus
       }
 
       window-rule {
@@ -68,10 +70,12 @@
       layout {
           gaps 12
 
+          default-column-width { proportion 0.5; }
+
           focus-ring {
               width 2
-              active-color "#88C0D0"
-              inactive-color "#4C566A"
+              active-gradient from="#${c.base0D}" to="#${c.base0C}" angle=45
+              inactive-color "#${c.base03}"
           }
 
           border {
@@ -83,7 +87,35 @@
               softness 30
               spread 5
               offset x=0 y=4
-              color "#00000080"
+              color "#${c.base00}99"
+          }
+      }
+
+      // Transparent backdrop lets the wallpaper show through in overview
+      overview {
+          backdrop-color "#${c.base00}00"
+      }
+
+      animations {
+          workspace-switch {
+              spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
+          }
+          window-open {
+              duration-ms 150
+              curve "ease-out-expo"
+          }
+          window-close {
+              duration-ms 150
+              curve "ease-in-expo"
+          }
+          window-movement {
+              spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+          }
+          window-resize {
+              spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+          }
+          horizontal-view-movement {
+              spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
           }
       }
 
@@ -96,6 +128,7 @@
           Mod+F { fullscreen-window; }
           Mod+C { center-column; }
           Mod+Tab { focus-workspace-previous; }
+          Mod+W { toggle-overview; }
 
           // Noctalia
           Mod+R { spawn "${noctalia}" "ipc" "call" "launcher" "toggle"; }
