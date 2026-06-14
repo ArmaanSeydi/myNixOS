@@ -68,6 +68,7 @@
       # Media
       ffmpeg
       imagemagick
+      yt-dlp
 
       # Wayland QoL
       wl-clipboard
