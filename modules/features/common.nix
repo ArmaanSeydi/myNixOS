@@ -70,7 +70,7 @@
       imagemagick
       yt-dlp
       audacity
-      kdenlive
+      kdePackages.kdenlive
 
       # Wayland QoL
       wl-clipboard
