@@ -32,6 +32,7 @@
       environment {
           XCURSOR_THEME "Bibata-Modern-Ice"
           XCURSOR_SIZE "16"
+          DISPLAY ":0"
       }
 
       prefer-no-csd
