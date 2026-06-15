@@ -1,5 +1,7 @@
 { lib, ... }: {
   flake.homeModules.firefox = { config, ... }: {
+    stylix.targets.firefox.profileNames = [ "armaan" ];
+
     programs.firefox = {
       enable = true;
       profiles.armaan = {
