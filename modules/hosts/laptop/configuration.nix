@@ -36,7 +36,7 @@
       options = "grp:alt_shift_toggle";
     };
 
-    services.logind.lidSwitch = "lock";
+    services.logind.settings.Login.HandleLidSwitch = "lock";
 
     services.displayManager.sddm = {
       enable = true;

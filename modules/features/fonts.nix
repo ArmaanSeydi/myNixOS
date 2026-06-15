@@ -25,13 +25,16 @@
         # Programmer monospace
         iosevka-bin
         nerd-fonts.jetbrains-mono
+
+        # Persian / Arabic
+        vazirmatn
       ];
 
       fontconfig = {
         enable = true;
         defaultFonts = {
-          sansSerif = [ "Noto Sans" "Noto Sans CJK SC" ];
-          serif     = [ "Noto Serif" "Noto Serif CJK SC" ];
+          sansSerif = [ "Vazirmatn" "Noto Sans" "Noto Sans CJK SC" ];
+          serif     = [ "Vazirmatn" "Noto Serif" "Noto Serif CJK SC" ];
           monospace = [ "JetBrainsMono Nerd Font" "Noto Sans Mono CJK SC" ];
           emoji     = [ "Noto Color Emoji" ];
         };
