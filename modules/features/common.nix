@@ -69,6 +69,8 @@
       ffmpeg
       imagemagick
       yt-dlp
+      audacity
+      kdenlive
 
       # Wayland QoL
       wl-clipboard
