@@ -6,6 +6,7 @@
       grim
       slurp
       fuzzel
+      xwayland-satellite
     ];
 
     services.cliphist.enable = true;
@@ -205,6 +206,7 @@
       spawn-at-startup "${swaybg}" "-i" "${../../../wallpapers/nord-apple.jpg}" "-m" "fill"
       spawn-at-startup "${noctalia}"
       spawn-at-startup "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
+      spawn-at-startup "${pkgs.xwayland-satellite}/bin/xwayland-satellite"
     '';
   };
 }
