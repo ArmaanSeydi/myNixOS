@@ -40,7 +40,8 @@
       input {
           keyboard {
               xkb {
-                  layout "us"
+                  layout "us,ir"
+                  options "grp:alt_shift_toggle"
               }
           }
           touchpad {

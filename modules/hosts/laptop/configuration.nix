@@ -31,9 +31,12 @@
 
     services.xserver.enable = true;
     services.xserver.xkb = {
-      layout = "us";
-      variant = "";
+      layout = "us,ir";
+      variant = ",";
+      options = "grp:alt_shift_toggle";
     };
+
+    services.logind.lidSwitch = "lock";
 
     services.displayManager.sddm = {
       enable = true;
