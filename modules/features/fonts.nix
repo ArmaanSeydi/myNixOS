@@ -27,14 +27,14 @@
         nerd-fonts.jetbrains-mono
 
         # Persian / Arabic
-        vazirmatn
+        vazir-fonts
       ];
 
       fontconfig = {
         enable = true;
         defaultFonts = {
-          sansSerif = [ "Vazirmatn" "Noto Sans" "Noto Sans CJK SC" ];
-          serif     = [ "Vazirmatn" "Noto Serif" "Noto Serif CJK SC" ];
+          sansSerif = [ "Vazir" "Noto Sans" "Noto Sans CJK SC" ];
+          serif     = [ "Vazir" "Noto Serif" "Noto Serif CJK SC" ];
           monospace = [ "JetBrainsMono Nerd Font" "Noto Sans Mono CJK SC" ];
           emoji     = [ "Noto Color Emoji" ];
         };
